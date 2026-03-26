@@ -32,14 +32,10 @@ def create_password():
 
 @app.route("/passwords", methods=["GET"])
 def list_passwords():
-    for password in passwords:
-        obj = {
-            "id": password.id,
-            "name": password.name,
-            "password": password.password
-        }
-        
-        return jsonify({obj})
+    if not passwords:
+        return jsonify({"Message": "Lista Vazia, adicione uma tarefa na sua lista"}), 404
+    return jsonify([p.to_dict() for p in passwords]), 200
+
 
 if __name__ == "__main__":
     app.run(debug=True)
