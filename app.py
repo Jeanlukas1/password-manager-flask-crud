@@ -47,9 +47,20 @@ def list_passwords():
 
 @app.route("/passwords/<int:id>", methods=["PUT"])
 def update_passwords(id):
+    data = request.get_json()
+    
     if not passwords:
         return jsonify({"message": "you dont have passwords created yet!"}), 404
-    data = request.get_json()
+    
+    if not isinstance(data, dict):
+        return jsonify({"error": "JSON must be an object"}), 400
+
+    if "name" not in data or "password" not in data:
+        return jsonify({"error": "Required fields remaining"}), 400
+
+    if data["name"] == "" or data["password"] == "":
+        return jsonify({"message": "Required fields remaining!"}), 400
+    
     for p in passwords:
         if p.id == id:
             p.name = data["name"] 
