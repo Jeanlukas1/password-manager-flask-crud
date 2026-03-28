@@ -13,7 +13,8 @@ def create_password():
     por exemplo caso eu quisesse que uma das validações abaixo fosse true, porém eu quero que todas sejam checadas
         Situação	                    Use
     Validações independentes	      if separados 
-    Decisão única (um ou outro)	  elif """
+    Decisão única (um ou outro)	        elif """
+    
     global id_control
     data = request.get_json()
     
@@ -41,6 +42,7 @@ def list_passwords():
     percorrera cada objeto e formatará cada objeto dentro de passowords. o to_dict() é como se fosse uma variável de 
     apresentação porém em formato dicionario pois precisamos converter este objeto em um dicionário depois para Json
     pois não podemos utilizar objetos para trafegar dados"""
+    
     if not passwords:
         return jsonify({"message": "you dont have passwords created yet!"}), 404
     return jsonify([p.to_dict() for p in passwords]), 200
@@ -78,6 +80,7 @@ def delete_password(id):
     de passwords está vazia caso o contrario roda-se um loop e dentro do loop verifica-se se o id que foi passado
     no parametro bate com algum id dos objetos percorridos dentro do loop, se sim retorna um Json com a mensagem e
     status code 200."""
+    
     if not passwords:
         return jsonify({"message": "you dont have passwords created yet!"}), 404
     
