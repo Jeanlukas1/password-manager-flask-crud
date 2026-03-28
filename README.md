@@ -194,6 +194,10 @@ doc/End-Points.postman_collection.json
 
 Basta importar no Postman para testar todos os endpoints.
 
+Ou clicar no link abaixo:
+
+    - link da collection no postman -> https://www.postman.com/lukasjean745-1800510/workspace/gerenciador-de-senhas
+
 ---
 
 ## 📌 Melhorias futuras
