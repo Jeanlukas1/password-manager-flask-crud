@@ -11,6 +11,7 @@ id_control = 1
 def create_password():
     """if isolado pois estamos fazendo uma validação isolada da outra, caso o contrário o elif seria mais apropriado
     por exemplo caso eu quisesse que uma das validações abaixo fosse true, porém eu quero que todas sejam checadas
+    
         Situação	                    Use
     Validações independentes	      if separados 
     Decisão única (um ou outro)	        elif """
