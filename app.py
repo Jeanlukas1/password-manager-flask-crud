@@ -47,6 +47,10 @@ def list_passwords():
 
 @app.route("/passwords/<int:id>", methods=["PUT"])
 def update_passwords(id):
+    """função que atualiza a senha com base no id fornecido no parametro da rota. Primeiro valido se há senhas na lista,
+    se o Json é válido, se todos os campos estão preenchidos caso tudo isto for True, percorre-se a lista de objetos e
+    verifica se o id inserido como parametro é igual algum id percorrido no loop, se sim, a senha é atualizada"""
+    
     data = request.get_json()
     
     if not passwords:
@@ -70,6 +74,10 @@ def update_passwords(id):
 
 @app.route("/passwords/<int:id>", methods=["DELETE"])
 def delete_password(id):  
+    """Função que deleta a senha cadastrada com base no id inserido no parametro da rota. Primeiro valido se a lista
+    de passwords está vazia caso o contrario roda-se um loop e dentro do loop verifica-se se o id que foi passado
+    no parametro bate com algum id dos objetos percorridos dentro do loop, se sim retorna um Json com a mensagem e
+    status code 200."""
     if not passwords:
         return jsonify({"message": "you dont have passwords created yet!"}), 404
     
