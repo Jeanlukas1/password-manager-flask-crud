@@ -45,7 +45,9 @@ def list_passwords():
         return jsonify({"Message": "Lista Vazia, adicione uma tarefa na sua lista"}), 404
     return jsonify([p.to_dict() for p in passwords]), 200
 
-
+@app.route("/password/<int:id>", methods=["PUT"])
+def update_passwords(id):
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
