@@ -56,7 +56,16 @@ def update_passwords(id):
             p.password = data["password"]
             return jsonify({"message": "password updated succefully!"}), 200
     return jsonify({"message": "id not found!"}), 404
-    
+
+@app.route("/passwords/<int:id>", methods=["DELETE"])
+def delete_password(id):
+    if not passwords:
+        return jsonify({"message": "you dont have passwords created yet!"}), 404
+    for p in passwords:
+        if p.id == id:
+            passwords.remove(p)
+            return jsonify({"message": "password deleted succefully!"}), 200
+    return jsonify({"message": "id not found!"}), 404
 
 if __name__ == "__main__":
     app.run(debug=True)
