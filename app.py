@@ -18,13 +18,13 @@ def create_password():
     data = request.get_json()
     
     if not isinstance(data, dict):
-        return jsonify({"error": "JSON deve ser um objeto"}), 400
+        return jsonify({"error": "JSON must be an object"}), 400
 
     if "name" not in data or "password" not in data:
-        return jsonify({"error": "Campos obrigatórios faltando"}), 400
+        return jsonify({"error": "Required fields remaining"}), 400
 
     if data["name"] == "" or data["password"] == "":
-        return jsonify({"message": "Campos obrigatórios não preenchidos!"}), 400
+        return jsonify({"message": "Required fields remaining!"}), 400
 
     new_password = Password(
         id=id_control,
@@ -42,11 +42,20 @@ def list_passwords():
     apresentação porém em formato dicionario pois precisamos converter este objeto em um dicionário depois para Json
     pois não podemos utilizar objetos para trafegar dados"""
     if not passwords:
-        return jsonify({"Message": "Lista Vazia, adicione uma tarefa na sua lista"}), 404
+        return jsonify({"message": "you dont have passwords created yet!"}), 404
     return jsonify([p.to_dict() for p in passwords]), 200
 
-@app.route("/password/<int:id>", methods=["PUT"])
+@app.route("/passwords/<int:id>", methods=["PUT"])
 def update_passwords(id):
+    if not passwords:
+        return jsonify({"message": "you dont have passwords created yet!"}), 404
+    data = request.get_json()
+    for p in passwords:
+        if p.id == id:
+            p.name = data["name"] 
+            p.password = data["password"]
+            return jsonify({"message": "password updated succefully!"}), 200
+    return jsonify({"message": "id not found!"}), 404
     
 
 if __name__ == "__main__":
