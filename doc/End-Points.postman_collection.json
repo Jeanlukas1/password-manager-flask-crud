@@ -1,0 +1,759 @@
+{
+  "info": {
+    "_postman_id": "00858879-7af7-4cf9-b8d7-0e5ac21bd275",
+    "name": "End-Points",
+    "description": "# End-Points — Gerenciador de Senhas\n\nEsta coleção reúne os endpoints da API do **Gerenciador de Senhas**, um sistema responsável pelo armazenamento e gerenciamento seguro de senhas de sites e outros sistemas.\n\n## Operações disponíveis\n\nA API oferece as operações completas de **CRUD** sobre o recurso de senhas:\n\n- **Criar senha** — `POST {{urlBase}}/passwords`  \n  Cadastra uma nova senha associada a um site ou sistema desejado pelo usuário.\n\n- **Listar senhas** — `GET {{urlBase}}/passwords`  \n  Retorna todas as senhas armazenadas pelo usuário.\n\n- **Atualizar senha** — `PUT {{urlBase}}/passwords/{id}`  \n  Atualiza os dados de uma senha já cadastrada, identificada pelo seu `id`.\n\n- **Deletar senha** — `DELETE {{urlBase}}/passwords/{id}`  \n  Remove permanentemente uma senha armazenada, identificada pelo seu `id`.\n\n## Configuração\n\nCertifique-se de que a variável de ambiente **`urlBase`** está definida no ambiente ativo (`gerenciador_senhas`) antes de executar as requisições.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53388125",
+    "_collection_link": "https://go.postman.co/collection/53388125-00858879-7af7-4cf9-b8d7-0e5ac21bd275?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create Password",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n    \"name\": \"Ava Univassouras\",\r\n    \"password\": \"Faculdade1@\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{urlBase}}/passwords",
+          "host": [
+            "{{urlBase}}"
+          ],
+          "path": [
+            "passwords"
+          ]
+        },
+        "description": "End point que é responsável pela criação da senha do respectivo site ou otro sistema que o usuário deseja guardar"
+      },
+      "response": [
+        {
+          "name": "status code 200",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n\t\t\"name\": \"Ava\",\r\n\t\t\"password\": \"Fa1@\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{urlBase}}/passwords/1?id=1",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:16:54 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "48"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"password updated succefully!\"\n}"
+        },
+        {
+          "name": "400 Bad Request",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n\t\t\"name\": \"\",\r\n\t\t\"password\": \"Fa1@\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{urlBase}}/passwords/1?id=1",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "BAD REQUEST",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:20:34 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "46"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Required fields remaining!\"\n}"
+        },
+        {
+          "name": "400 Bad Request Fields Required",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n\t\t\"name\": \"\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{urlBase}}/passwords/1?id=1",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "BAD REQUEST",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:22:10 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "43"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Required fields remaining\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "List Passwords",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{urlBase}}/passwords",
+          "host": [
+            "{{urlBase}}"
+          ],
+          "path": [
+            "passwords"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "404 Not Found",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{urlBase}}/passwords",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords"
+              ]
+            }
+          },
+          "status": "NOT FOUND",
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:23:48 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "56"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"you dont have passwords created yet!\"\n}"
+        },
+        {
+          "name": "200 List Passwords",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{urlBase}}/passwords",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:24:25 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "87"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 2,\n        \"name\": \"Ava Univassouras\",\n        \"password\": \"Faculdade1@\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "name": "Update Passwords",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": " {\r\n\t\t\"name\": \"\"\r\n}\r\n\r\n"
+        },
+        "url": {
+          "raw": "{{urlBase}}/passwords/1?id=1",
+          "host": [
+            "{{urlBase}}"
+          ],
+          "path": [
+            "passwords",
+            "1"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "status code 200",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n\t\t\"name\": \"Ava\",\r\n\t\t\"password\": \"Fa1@\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{urlBase}}/passwords/1?id=1",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:16:54 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "48"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"password updated succefully!\"\n}"
+        },
+        {
+          "name": "400 Bad Request",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n\t\t\"name\": \"\",\r\n\t\t\"password\": \"Fa1@\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{urlBase}}/passwords/1?id=1",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "BAD REQUEST",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:20:34 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "46"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Required fields remaining!\"\n}"
+        },
+        {
+          "name": "400 Bad Request Fields Required",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n\t\t\"name\": \"\"\r\n}\r\n\r\n"
+            },
+            "url": {
+              "raw": "{{urlBase}}/passwords/1?id=1",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords",
+                "1"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "BAD REQUEST",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:22:10 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "43"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Required fields remaining\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Password",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{urlBase}}/passwords/3",
+          "host": [
+            "{{urlBase}}"
+          ],
+          "path": [
+            "passwords",
+            "3"
+          ]
+        },
+        "description": "Delete Request using the password's id"
+      },
+      "response": [
+        {
+          "name": "404 Not Found Id",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{urlBase}}/passwords/1",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords",
+                "1"
+              ]
+            }
+          },
+          "status": "NOT FOUND",
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:13:44 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "31"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"id not found!\"\n}"
+        },
+        {
+          "name": "404 empty list",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{urlBase}}/passwords/3",
+              "host": [
+                "{{urlBase}}"
+              ],
+              "path": [
+                "passwords",
+                "3"
+              ]
+            }
+          },
+          "status": "NOT FOUND",
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Server",
+              "value": "Werkzeug/3.1.7 Python/3.13.2"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 28 Mar 2026 01:26:10 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "56"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"you dont have passwords created yet!\"\n}"
+        }
+      ]
+    }
+  ]
+}
