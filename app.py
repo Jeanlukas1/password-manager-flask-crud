@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request, jsonify
+from flask import Flask, request, jsonify
 from models.password import Password
 
 app = Flask(__name__)
