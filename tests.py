@@ -3,5 +3,12 @@ import requests
 
 BASE_URL = "http://127.0.0.1:5000"
 
-passwords = []
+passwords_list = []
 
+def test_create_password():
+    payload = {
+    "name": "Password Teste",
+    "password": "PasswordTeste@"
+    }
+    response = requests.post(f"{BASE_URL}/passwords", json=payload)
+    assert response.status_code == 200
