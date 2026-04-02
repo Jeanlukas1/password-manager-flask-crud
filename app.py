@@ -35,7 +35,7 @@ def create_password():
     )
     id_control += 1
     passwords.append(new_password)
-    return jsonify({"message": "password succefully created and added to your passwords list"}), 200
+    return jsonify({"message": "password succefully created and added to your passwords list", "id": new_password.id}), 200
 
 @app.route("/passwords", methods=["GET"])
 def list_passwords():
