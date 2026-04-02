@@ -12,3 +12,5 @@ def test_create_password():
     }
     response = requests.post(f"{BASE_URL}/passwords", json=payload)
     assert response.status_code == 200
+    
+    response_json = response.json()
