@@ -15,4 +15,11 @@ def test_create_password():
     
     response_json = response.json()
     assert "message" in response_json
+    assert "id" in response_json
     passwords_list.append(response_json["id"])
+    
+def test_list_password():
+    response = requests.get(f"{BASE_URL}/passwords")
+    assert response.status_code == 200
+    
+    
