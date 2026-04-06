@@ -37,3 +37,32 @@ def test_list_password():
     assert isinstance(response_json, list)
     assert "id" in response_json[0]
     assert "name" in response_json[0]
+    
+def test_update_password():
+    # 1. Criar uma senha
+    payload = {
+        "name": "Teste",
+        "password": "123"
+    }
+
+    create = requests.post(f"{BASE_URL}/passwords", json=payload)
+    assert create.status_code == 200
+
+    created = create.json()
+    password_id = created["id"]
+
+    # 2. Atualizar a senha
+    update_payload = {
+        "name": "Teste Atualizado",
+        "password": "456"
+    }
+
+    response = requests.put(
+        f"{BASE_URL}/passwords/{password_id}",
+        json=update_payload
+    )
+
+    # 3. Validações
+    assert response.status_code == 200
+    assert "updated" in response.json()["message"]
+    
