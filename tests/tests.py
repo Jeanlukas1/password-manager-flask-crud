@@ -66,3 +66,31 @@ def test_update_password():
     assert response.status_code == 200
     assert "updated" in response.json()["message"]
     
+def test_delete_password():
+    # 1. Criar uma senha
+    payload = {
+        "name": "Teste Delete",
+        "password": "123"
+    }
+
+    create = requests.post(f"{BASE_URL}/passwords", json=payload)
+    assert create.status_code == 200
+
+    created = create.json()
+    password_id = created["id"]
+
+    # 2. Deletar a senha
+    response = requests.delete(f"{BASE_URL}/passwords/{password_id}")
+
+    # 3. Validações
+    assert response.status_code == 200
+    assert "deleted" in response.json()["message"]
+
+    # 4. Garantir que foi removido
+    get_all = requests.get(f"{BASE_URL}/passwords")
+
+    if get_all.status_code == 200:
+        data = get_all.json()
+        ids = [item["id"] for item in data]
+
+        assert password_id not in ids
